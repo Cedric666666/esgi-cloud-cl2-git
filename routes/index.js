@@ -3,7 +3,7 @@ import createError from 'http-errors'
 import multer from 'multer'
 
 // TODO: import Firebase dependencies
-import{ getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import{ getAuth, signInWithEmailAndPassword , signOut} from 'firebase/auth'
 
 // TODO: import Firebase applications
 import firebaseApp from '../firebase.js'
@@ -35,7 +35,9 @@ router.post('/auth', function (req, res, next) {
 })
 
 router.get('/logout', function (req, res, next) {
-  // TODO
+  signOut().then((_) => {
+    res.redirect('/auth')
+  })
 })
 
 router.get('/gallery', function (req, res, next) {
